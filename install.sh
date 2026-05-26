@@ -244,7 +244,7 @@ apply_pending_update() {
   chmod +x "$target_dir/junie" 2>/dev/null || true
 
   # Remove quarantine on macOS
-  xattr -dr com.apple.quarantine "$target_dir" 2>/dev/null || true
+  xattr -d com.apple.quarantine "$target_dir" 2>/dev/null || true
 
   # Update current symlink atomically
   ln -sfn "$target_dir" "$CURRENT_LINK"
@@ -419,7 +419,7 @@ if [[ ! -d "$TARGET_DIR" ]]; then
   unzip -q -o "$TMP_ZIP" -d "$TARGET_DIR"
   rm -f "$TMP_ZIP"
 
-  [[ "$OS_NAME" == "macos" ]] && xattr -dr com.apple.quarantine "$TARGET_DIR" 2>/dev/null || true
+  [[ "$OS_NAME" == "macos" ]] && xattr -d com.apple.quarantine "$TARGET_DIR" 2>/dev/null || true
 fi
 
 # Set current version
